@@ -1,0 +1,10 @@
+# Ignore dependencies
+node_modules/
+
+# Ignore env files
+.env
+.env.*
+
+# Ignore build files
+dist/
+build/
