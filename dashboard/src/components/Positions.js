@@ -4,9 +4,10 @@ import { positions } from "../data/data";
 const Positions = () => {
 
   const [allPositions, setallPositions] = useState([]);
+    const API =process.env.REACT_APP_API_URL;
 
 useEffect(()=>{
-    axios.get("http://localhost:3002/allPositions").then((res)=>{
+    axios.get(`${API}/allPositions`).then((res)=>{
       console.log(res.data);
       setallPositions(res.data);
     })
