@@ -33,5 +33,7 @@ export const options = {
 };
 
 export function VerticalGraph({ data }) {
-  return <Bar options={options} data={data} />;
+  return <div style={{ height: "300px", width: "100%" }}>
+      <Bar options={options} data={data} />
+    </div>;
 }
