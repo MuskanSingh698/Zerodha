@@ -192,18 +192,18 @@ app.get("/", (req, res) => {
 // });
 
 
-app.get("/allHoldings", async(req,res)=>{
+app.get("${process.env.REACT_APP_API_URL}/allHoldings", async(req,res)=>{
     let allHoldings = await HoldingsModel.find({});
     res.json(allHoldings);
 });
 
 
-app.get("/allPositions", async(req,res)=>{
+app.get("${process.env.REACT_APP_API_URL}/allPositions", async(req,res)=>{
     let allPositions = await PositionsModel.find({});
     res.json(allPositions);
 });
 
-app.post('/newOrder', async(req,res)=>{
+app.post('${process.env.REACT_APP_API_URL}/newOrder', async(req,res)=>{
 let newOrder = new OrdersModel({
      name:req.body.name,
     qty: req.body.qty,
