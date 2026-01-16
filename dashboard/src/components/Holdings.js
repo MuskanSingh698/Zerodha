@@ -6,9 +6,16 @@ import { VerticalGraph } from "./VerticalGraph";
 const Holdings = () => {
 
   const [allHoldings,setallHoldings] = useState([]);
-  const API =process.env.REACT_APP_API_URL;
+  const URL =process.env.REACT_APP_API_URL ;
+  console.log("API URL:", process.env.REACT_APP_API_URL);
+
   useEffect(()=>{
-    axios.get(`${API}/allHoldings`).then((res)=>{
+     if (!URL) {
+    console.error("API URL is undefined! Check your .env file.");
+    return;
+  }
+
+    axios.get(`${URL}/allHoldings`).then((res)=>{
       console.log(res.data);
       setallHoldings(res.data);
     })
@@ -33,6 +40,7 @@ const data = {
 
       <div className="order-table">
         <table>
+        <thead>
           <tr>
             <th>Instrument</th>
             <th>Qty.</th>
@@ -43,7 +51,8 @@ const data = {
             <th>Net chg.</th>
             <th>Day chg.</th>
           </tr>
-
+        </thead>
+        <tbody>
           {allHoldings.map((stock,index)=>{
             const curValue = stock.price * stock.qty;
             const isProfit = curValue-stock.avg*stock.qty >= 0.0;
@@ -63,6 +72,7 @@ const data = {
           </tr>
             )
           })}
+          </tbody>
         </table>
       </div>
 
