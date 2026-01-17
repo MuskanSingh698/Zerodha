@@ -2,16 +2,15 @@ import React from "react";
 
 function OpenAccount() {
   return (
-    <div className="container p-5 mb-5">
-      <div className="row text-center">
-        <h1 className="mt-5">Open a Zerodha account</h1>
-        <p>
-          Modern platforms and apps, ₹0 investments, and flat ₹20 intraday and
-          F&O trades.
+    <div className="container d-flex align-items-center justify-content-center min-vh-50 py-5">
+      <div className="text-center px-3">
+        <h1 className="display-5 mb-3">Open a Zerodha account</h1>
+        <p className="fs-6 fs-md-5 text-muted mb-4">
+          Modern platforms and apps, ₹0 investments, and flat ₹20 intraday and F&O trades.
         </p>
         <button
-          className="p-2 btn btn-primary fs-5 mb-5"
-          style={{ width: "20%", margin: "0 auto" }}
+          className="btn btn-primary fs-6 fs-md-5 px-4 py-2"
+          style={{ minWidth: "180px" }}
         >
           Sign up Now
         </button>

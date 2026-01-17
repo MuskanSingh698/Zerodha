@@ -4,18 +4,20 @@ function Hero() {
   return (
     <div className="container">
       <div className="row p-5 mt-5 mb-5">
-        <h1 className="fs-2 text-center">
+        <h1 className="fs-4 fs-md-3 fs-lg-2 text-center">
           We pioneered the discount broking model in India
-          <br />
+          <br  />
           Now, we are breaking ground with our technology.
         </h1>
       </div>
 
       <div
-        className="row p-5 mt-5 border-top text-muted"
+        className="row p-5 mt-5 border-top text-muted "
         style={{ lineHeight: "1.8", fontSize: "1.2em" }}
       >
-        <div className="col-6 p-5">
+        <div className="col-12 col-md-6
+ px-3 px-md-4 px-lg-5
+">
           <p>
             We kick-started operations on the 15th of August, 2010 with the goal
             of breaking all barriers that traders and investors face in India in
@@ -33,7 +35,7 @@ function Hero() {
             all Indian retail trading volumes.
           </p>
         </div>
-        <div className="col-6 p-5">
+        <div className="col-12 col-md-6 px-3 px-md-4 px-lg-5">
           <p>
             In addition, we run a number of popular open online educational and
             community initiatives to empower retail traders and investors.
