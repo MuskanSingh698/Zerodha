@@ -13,7 +13,7 @@ code {
 }
 
 .nav-link{
-  margin-left: 40px;
+  margin-left: 3rem;
 }
 
 #supportHero{
@@ -27,14 +27,44 @@ code {
 
 #supportWrapper{
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  margin: 0 150px;
+  gap: 2rem;
+  padding: 3vw 5vw;   
+  margin: 0 auto;
+  max-width: 1200px;
 }
 
+.supportContent{
+  padding: 1vw 3vw;
+}
 #supportHero input{
-  padding: 20px 50px;
+  padding: 1rem 1.5rem;
   width: 100%;
-  font-size: 20px;
+  font-size:  1rem;
   border-radius: 10px;
   border: none;
+}
+a{
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+
+@media (max-width: 768px) {
+  .nav-link {
+    margin-left: 1rem;
+    display: block;
+    margin-bottom: 0;
+  }
+  #supportWrapper {
+    flex-direction: column;
+    padding: 0;
+  }
+  .supportContent{
+    padding:1rem 1rem;
+  }
+  
 }
