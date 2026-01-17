@@ -5,8 +5,9 @@ import { VerticalGraph } from "./VerticalGraph";
 
 const Holdings = () => {
 
-  const [allHoldings,setallHoldings] = useState([]);
+  
   const URL =process.env.REACT_APP_API_URL ;
+  const [allHoldings,setallHoldings] = useState([]);
   console.log("API URL:", process.env.REACT_APP_API_URL);
 
   useEffect(()=>{
@@ -19,7 +20,7 @@ const Holdings = () => {
       console.log(res.data);
       setallHoldings(res.data);
     })
-  },[]);
+  },[URL]);
 
 const labels = allHoldings.map((subArray) => subArray["name"]);
 
