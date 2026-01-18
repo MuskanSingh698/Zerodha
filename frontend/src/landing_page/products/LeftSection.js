@@ -1,14 +1,34 @@
 import React from "react";
-
+import  axios  from "axios";
 function LeftSection({
   imageURL,
   productName,
   productDesription,
-  tryDemo,
+  
   learnMore,
   googlePlay,
   appStore,
 }) {
+
+  const handleTryDemo = async () => {
+    try {
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/auth/demo-login`
+      );
+
+      // Save token & user info
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("user", JSON.stringify(res.data.user));
+      localStorage.setItem("isDemoUser", "true");
+
+      // Redirect to dashboard
+     window.location.href = "/dashboard";// or /dashboard/index.html after build
+    } catch (err) {
+      alert("Demo login failed");
+    }
+  };
+
+
   return (
     <div className="container mt-5 px-3 px-md-4 px-lg-5">
       <div className="row align-items-center">
@@ -30,9 +50,9 @@ function LeftSection({
 
           {/* Links */}
           <div className="d-flex flex-column flex-sm-row gap-3 mt-3">
-            <a href={tryDemo} className="btn btn-primary">
+           <button className="btn btn-primary" onClick={handleTryDemo}>
               Try Demo
-            </a>
+            </button>
             <a href={learnMore} className="btn btn-outline-secondary">
               Learn More
             </a>

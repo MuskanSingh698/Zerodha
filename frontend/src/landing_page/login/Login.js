@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
-const Signup = () => {
+const Login = () => {
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
     password: ""
   });
@@ -20,36 +19,28 @@ const Signup = () => {
 
     try {
       const res = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/auth/signup`,
+        `${process.env.REACT_APP_API_URL}/api/auth/login`,
         formData
       );
 
-      alert("Signup successful! Please login.");
-      navigate("/login"); // ✅ redirect to login page
+      // ✅ Save token
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("user", JSON.stringify(res.data.user));
+
+      alert("Login successful!");
+      navigate("/"); // redirected to homepage
 
     } catch (error) {
-      alert(error.response?.data?.message || "Signup failed");
+      alert(error.response?.data?.message || "Login failed");
     }
   };
 
   return (
     <div className="container d-flex justify-content-center align-items-center min-vh-100">
       <div className="card shadow p-4" style={{ width: "400px" }}>
-        <h3 className="text-center mb-4">Create Account</h3>
+        <h3 className="text-center mb-4">Login</h3>
 
         <form onSubmit={handleSubmit}>
-          <div className="mb-3">
-            <label className="form-label">Name</label>
-            <input
-              type="text"
-              className="form-control"
-              name="name"
-              placeholder="Enter your name"
-              onChange={handleChange}
-              required
-            />
-          </div>
-
           <div className="mb-3">
             <label className="form-label">Email</label>
             <input
@@ -75,15 +66,14 @@ const Signup = () => {
           </div>
 
           <button type="submit" className="btn btn-primary w-100">
-            Sign Up
+            Login
           </button>
         </form>
 
-        {/* ✅ LOGIN OPTION */}
         <p className="text-center mt-3">
-          Already have an account?{" "}
-          <Link to="/login" className="text-primary fw-bold">
-            Login
+          Don’t have an account?{" "}
+          <Link to="/signup" className="text-primary fw-bold">
+            Sign Up
           </Link>
         </p>
       </div>
@@ -91,4 +81,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Login;
