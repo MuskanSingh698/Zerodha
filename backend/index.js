@@ -4,6 +4,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const authRoutes = require("./routes/auth");
 
+const path = require("path");
 
 
 const PORT = process.env.PORT || 3002;
@@ -21,12 +22,13 @@ const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.json());
 app.use("/api/auth", authRoutes);
 
 
-app.get("/", (req, res) => {
-  res.send("Backend is running!");
-});
+// app.get("/", (req, res) => {
+//   res.send("Backend is running!");
+// });
 
 // app.get('/addHoldings', async (req, res) => {
 //     let tempData = [
@@ -215,6 +217,25 @@ let newOrder = new OrdersModel({
 });
     newOrder.save();
     res.send("order saved")
+});
+
+// Serve frontend
+app.use(express.static(path.join(__dirname, "../frontend/build")));
+
+// Serve dashboard
+app.use("/dashboard", express.static(path.join(__dirname, "../dashboard/build")));
+
+// ✅ SAFE fallback (NO wildcard)
+app.use((req, res) => {
+  if (req.path.startsWith("/dashboard")) {
+    res.sendFile(
+      path.join(__dirname, "../dashboard/build", "index.html")
+    );
+  } else {
+    res.sendFile(
+      path.join(__dirname, "../frontend/build", "index.html")
+    );
+  }
 });
 
 
